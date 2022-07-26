@@ -9,9 +9,9 @@ export default function Layout() {
     <>
       <div className={styles.Layout}>
         <Header />
-          <main>
-            <Outlet />
-          </main>
+        <main>
+          <Outlet />
+        </main>
       </div>
     </>
   );
