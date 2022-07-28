@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-font: 'Candal', 'Segoe UI', Candara,
+    'Bitstream Vera Sans', 'DejaVu Sans',
+    'Bitstream Vera Sans', 'Trebuchet MS', Verdana,
+    'Verdana Ref', sans-serif;
+  --label-font: 'Bebas Neue', Impact, Haettenschweiler,
+    'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat',
+    'Bitstream Vera Sans Bold', 'Arial Black', sans-serif;
+
+  --header-color: #00a8c6;
+  --color-2: #40c0cb;
+  --offset-color: #d3dcbd;
+  --color-4: #b9d660;
+  --background-color: #f9f2e7;
+  --black-color: rgb(27, 42, 48);
+  --caption-color: rgb(65, 99, 112);
+  --white: white;
+
+  --magic-mint: #97ead2ff;
+  --eton-blue: #8cc7a1ff;
+  --french-lilac: #816e94ff;
+  --midnight: #74226cff;
+  --dark-purple: #4b2142ff;
+
+  --padding: 20px;
+  @media (min-width: 750px) {
+    --padding: 40px;
+  }
+}
+
+body {
+  font-family: var(--primary-font);
+  background: var(--background-color);
+  color: var(--black-color);
+}
+
+:global(.label-text) {
+  font-family: var(--label-font);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+a {
+  color: var(--white);
+}

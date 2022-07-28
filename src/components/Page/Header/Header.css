@@ -1,0 +1,35 @@
+.Header {
+  --header-height: 35px;
+  @media (min-width: 750px) {
+    --header-height: 50px;
+  }
+
+  position: sticky;
+  top: 0;
+  background: var(--dark-purple);
+  color: var(--white);
+  padding-right: var(--padding);
+  height: var(--header-height);
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+
+  .NavigationContainer {
+    display: none;
+    justify-self: end;
+  }
+
+  @media (min-width: 750px) {
+    padding-left: var(--padding);
+
+    .MenuContainer {
+      display: none;
+    }
+
+    .NavigationContainer {
+      display: initial;
+    }
+  }
+}
