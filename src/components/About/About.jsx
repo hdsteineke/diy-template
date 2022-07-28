@@ -34,16 +34,16 @@ export default function About() {
         </Fieldset>
 
         <SelectControl label="type">
-          <option>A</option>
-          <option>B</option>
-          <option>C</option>
+          <option>Easy</option>
+          <option>Breezy</option>
+          <option>Beautiful</option>
         </SelectControl>
 
         <CheckboxControl label="Easy Mode?" text="Yes" />
 
         <TextAreaControl
           label="bio"
-          placeholder="tell us about yourself"
+          placeholder="tell me your favorite story"
         />
 
         <FormButton>Submit</FormButton>

@@ -6,7 +6,7 @@ export default function List() {
       {Array.from({ length: 10 }, (x, i) => i + 1).map(
         (n) => (
           <li key={n} className="accent-theme">
-            list item {n}
+            Reason {n} why you should hire me...
           </li>
         )
       )}

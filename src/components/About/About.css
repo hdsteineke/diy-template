@@ -10,7 +10,7 @@
 
   .PasswordControl {
     input {
-      background: red;
+      color: black;
     }
   }
 }

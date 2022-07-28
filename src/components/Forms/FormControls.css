@@ -13,7 +13,7 @@
     display: block;
     font-size: 0.8em;
     margin-bottom: 1px;
-    color: var(--caption-color);
+    color: var(--dark-purple);
   }
 
   input:not([type='checkbox']),
@@ -48,13 +48,13 @@
 
 .FormButton {
   padding: 10px 15px;
-  background: var(--color-2);
-  border: 1px solid var(--header-color);
+  background: var(--white);
+  border: 1px solid black;
   cursor: pointer;
 }
 
 .Fieldset {
-  border-top: 1px solid black;
+  border-top: 1px solid gray;
 
   legend {
     text-align: center;

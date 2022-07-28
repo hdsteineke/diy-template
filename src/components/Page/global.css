@@ -18,7 +18,7 @@
   --background-color: #f9f2e7;
   --black-color: rgb(27, 42, 48);
   --caption-color: rgb(65, 99, 112);
-  --white-color: white;
+  --white: white;
 
   --magic-mint: #97ead2ff;
   --eton-blue: #8cc7a1ff;
@@ -42,4 +42,8 @@ body {
   font-family: var(--label-font);
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+a {
+  color: var(--white);
 }
