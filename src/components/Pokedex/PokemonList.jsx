@@ -5,7 +5,7 @@
 
 export default function PokemonList({ pokedex }) {
   return (
-    <ul className={styles.PokemonList}>
+    <ul>
       {pokedex.map((pokemon, i) => (
         <Card
           key={pokemon + i}
@@ -23,14 +23,14 @@ function Card({ pokemon }) {
   const { url_image, pokemon: name, ability_1 } = pokemon;
 
   return (
-    <li className={styles.Card}>
+    <li >
       <img src={url_image} alt={name} />
 
-      <h2 className={styles.Header} title={name}>
+      <h2 title={name}>
         {name}
       </h2>
 
-      <div className={styles.Abilities}>
+      <div>
         <Ability ability={ability_1} />
       </div>
     </li>
