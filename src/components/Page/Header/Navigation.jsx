@@ -6,6 +6,7 @@ export default function Navigation() {
     <nav className={styles.Navigation}>
       <NavLink to="/">Home</NavLink>
       <NavLink to="list">List</NavLink>
+      <NavLink to="pokedex">Pokedex</NavLink>
       <NavLink to="about">About</NavLink>
     </nav>
   );
