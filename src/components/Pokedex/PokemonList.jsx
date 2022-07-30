@@ -1,11 +1,12 @@
 //import { useEffect } from 'react';
+import styles from './PokemonList.css';
 
 // this is the pokedex component that maps through the individual 
 //card components, displaying the pokemon in a list
 
 export default function PokemonList({ pokedex }) {
   return (
-    <ul>
+    <ul className={styles.PokemonList}>
       {pokedex.map((pokemon, i) => (
         <Card
           key={pokemon + i}
@@ -23,7 +24,7 @@ function Card({ pokemon }) {
   const { url_image, pokemon: name, ability_1 } = pokemon;
 
   return (
-    <li >
+    <li className={styles.Card}>
       <img src={url_image} alt={name} />
 
       <h2 title={name}>
