@@ -1,5 +1,7 @@
-//import Navigation from '../Page/Navigation';
-//import { Outlet } from 'react-router-dom';
+import Navigation from '../Page/Navigation';
+import { Outlet } from 'react-router-dom';
+import Bunnies from './Bunnies';
+import Families from './Families';
 
 //creating sub-navigation header to toggle between bunnies and families
 //on the Fuzzy Bunny page
@@ -15,9 +17,11 @@ export default function FuzzyBunny() {
   return (
     <section>
       <header>
-        <h1>Navigation Component</h1>
         {/* <Navigation navigation={navigation} /> */}
+        <Bunnies />
+        <Families />
       </header>
+      <Outlet />
       <h1>Outlet</h1>
     </section>
   );

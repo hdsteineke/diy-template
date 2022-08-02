@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from './Navigation.css';
 
-export default function Navigation() {
+export default function Navigation({ navigation, to }) {
   return (
     <nav className={styles.Navigation}>
+      {/* {navigation.map(({ to, label }) => (
+        <NavLink key={to} to={to}>
+          {label}
+        </NavLink>
+      ))} */}
       <NavLink to="/">Home</NavLink>
       <NavLink to="list">List</NavLink>
       <NavLink to="pokedex">Pokedex</NavLink>

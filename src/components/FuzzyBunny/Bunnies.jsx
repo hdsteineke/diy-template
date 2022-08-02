@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Bunnies() {
   return (
-    <div>Bunnies</div>
+    <div>A bunch of fuzzy bunnies</div>
   );
 }
