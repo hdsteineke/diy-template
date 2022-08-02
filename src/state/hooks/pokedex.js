@@ -28,7 +28,6 @@ export function usePokedex() {
   useEffect(() => {
     const fetch = async () => {
       const pokeData = await getPokedex();
-      console.log('pokeData', pokeData);
       setPokedex(pokeData.results);
     };
     fetch();

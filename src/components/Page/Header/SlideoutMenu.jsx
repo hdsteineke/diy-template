@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Navigation from './Navigation.jsx';
+import Navigation from '../Navigation.jsx';
 import styles from './SlideoutMenu.css';
 import classNames from 'classnames';
 
