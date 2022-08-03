@@ -6,6 +6,7 @@ import styles from './Header.css';
 
 const primary = [
   { to: '/', label: 'Home' },
+  { to: 'list', label: 'List' },
   { to: 'pokedex', label: 'Pokedex' },
   { to: 'fuzzy-bunny', label: 'Fuzzy Bunny' },
   { to: 'about', label: 'About' },
