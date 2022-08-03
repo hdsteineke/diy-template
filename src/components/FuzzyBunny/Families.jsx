@@ -1,7 +1,13 @@
-import React from 'react';
+import { useFamilies } from '../../state/hooks/fuzzyBunny';
+import Family from './Family';
 
 export default function Families() {
+  const { families } = useFamilies();
   return (
-    <div>Families for every bun!</div>
+    <div>
+      {families.map((family) => {
+        <Family key={family.id} family={family} />;
+      })}
+    </div>
   );
 }

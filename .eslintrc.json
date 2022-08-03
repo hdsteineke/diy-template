@@ -20,7 +20,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "plugins": ["babel", "react"],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
