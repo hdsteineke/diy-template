@@ -3,6 +3,7 @@ import{
   FuzzyBunnyContext
 } from '../context/FuzzyBunnyContext.jsx';
 import { getFamilies } from '../services/fetch-utils.js';
+import { addFamily } from '../services/fetch-utils.js';
 
 //a function that fetches all families from the database on load
 //Error is displayed when there is an error process the request
@@ -47,7 +48,7 @@ export function useActions() {
       Error('Something went wrong. Please try again.');
     }
     if (data) {
-      dispatch({ type: 'add', payload: data});
+      dispatch({ type: 'add', payload: data });
       alert('Added successfully!');
     }
   };

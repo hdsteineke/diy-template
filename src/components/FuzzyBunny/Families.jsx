@@ -1,15 +1,15 @@
-// import { useFamilies } from '../../state/hooks/fuzzyBunny';
-// import Family from './Family';
+import Family from './Family';
+import FamilyList from './FamilyList';
+// import AddFamily from './AddFamily.jsx';
 
 export default function Families() {
   // const { families } = useFamilies();
   return (
     <div>
-      {/* {families.map((family) => {
-        <Family key={family.id} family={family} />;
-      })} */}
+      {/* <AddFamily /> */}
+      <FamilyList />
 
-      <ul>
+      {/* <ul>
         <li>
           <h3>the Steineke family</h3>
           <ul>
@@ -18,7 +18,7 @@ export default function Families() {
           </ul>
 
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }

@@ -5,7 +5,14 @@ export async function getFamilies() {
     .from('families')
     .select('*');
 
-  console.log(response);
+  return response;
+}
+
+export async function addFamily(family) {
+  const response = await client
+    .from('families')
+    .insert(family);
+    
   return response;
 }
 
