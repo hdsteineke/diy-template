@@ -1,9 +1,11 @@
-import client from './client.js';
+import { client } from './client.js';
 
 export async function getFamilies() {
-  const { body } = await client
+  const response = await client
     .from('families')
     .select('*');
 
-  return body;
+  console.log(response);
+  return response;
 }
+

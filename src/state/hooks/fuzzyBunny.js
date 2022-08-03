@@ -1,13 +1,15 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import{
   FuzzyBunnyContext
 } from '../context/FuzzyBunnyContext.jsx';
 import { getFamilies } from '../services/fetch-utils.js';
 
-
+//a function that fetches all families from the database on load
+//Error is displayed when there is an error process the request
+//Otherwise, dispatch is called to load families
 export function useFamilies() {
   const [error, setError] = useState(null);
-  const { families } = useContext(FuzzyBunnyContext);
+  const { families, dispatch } = useContext(FuzzyBunnyContext);
 
   useEffect(() => {
     if (families) return;
@@ -20,9 +22,9 @@ export function useFamilies() {
       if (error) {
         setError(error);
       }
-      // if (data)  {
-      //   familiesDispatch({ type: 'load', payload: data });
-      // }
+      if (data)  {
+        dispatch({ type: 'load', payload: data });
+      }
     };
 
     fetch();
@@ -33,4 +35,21 @@ export function useFamilies() {
   return { families, error };
 }
 
+//A function that entails the various CRUD operations for editing families,
+//connecting each CRUD operation with it's respective dispatch call,
+//as well as an error message when appropriate
+export function useActions() {
+  const { dispatch } = useContext(FuzzyBunnyContext);
 
+  const add = async (family) => {
+    const { data, error } = await addFamily(family);
+    if (error) {
+      Error('Something went wrong. Please try again.');
+    }
+    if (data) {
+      dispatch({ type: 'add', payload: data});
+      alert('Added successfully!');
+    }
+  };
+  return { add };
+}
