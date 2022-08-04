@@ -16,3 +16,21 @@ export async function addFamily(family) {
   return response;
 }
 
+export async function deleteFamily(id) {
+  const response = await client
+    .from('families')
+    .delete()
+    .match(id)
+    .single();
+
+  return response;
+}
+
+export async function updateFamily(id, familyUpdate) {
+  const response = await client
+    .from('families')
+    .update(familyUpdate)
+    .match(id)
+    .single();
+}
+
