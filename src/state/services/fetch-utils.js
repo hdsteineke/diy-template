@@ -20,17 +20,19 @@ export async function deleteFamily(id) {
   const response = await client
     .from('families')
     .delete()
-    .match(id)
+    .eq('id', id)
     .single();
 
   return response;
 }
 
-export async function updateFamily(id, familyUpdate) {
+export async function updateFamily(family) {
   const response = await client
     .from('families')
-    .update(familyUpdate)
-    .match(id)
+    .update(family)
+    .eq('id', family.id)
     .single();
+
+  return response;
 }
 

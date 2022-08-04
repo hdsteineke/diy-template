@@ -2,8 +2,14 @@ import { useContext, useEffect, useState } from 'react';
 import{
   FuzzyBunnyContext
 } from '../context/FuzzyBunnyContext.jsx';
-import { getFamilies } from '../services/fetch-utils.js';
-import { addFamily } from '../services/fetch-utils.js';
+import { 
+  getFamilies, 
+  addFamily, 
+  deleteFamily, 
+  updateFamily 
+} from '../services/fetch-utils.js';
+
+
 
 //a function that fetches all families from the database on load
 //Error is displayed when there is an error process the request
@@ -52,5 +58,30 @@ export function useActions() {
       alert('Added successfully!');
     }
   };
-  return { add };
+
+
+  const remove = async (id) => {
+    const { data, error } = await deleteFamily(id);
+    if (error) {
+      Error('Something went wrong. Please try again.');
+    }
+    if (data) {
+      dispatch({ type: 'remove', payload: data });
+      alert('Removed successfully!');
+    }
+  };
+
+
+  const update = async (family) => {
+    const { data, error } = await updateFamily(family);
+    if (error) {
+      Error('Something went wrong. Please try again.');
+    }
+    if (data) {
+      dispatch({ type: 'update', payload: data });
+      alert('Updated successfully!');
+    }
+  };
+
+  return { add, remove, update };
 }

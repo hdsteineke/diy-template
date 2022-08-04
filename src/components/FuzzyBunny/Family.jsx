@@ -8,7 +8,7 @@ export default function Family({ family }) {
   const ref = useRef();
   const [name, setName] = useState(family.name);
 
-  const handleRemove = () => remove(family.id);
+  const handleRemove = async () => await remove(family.id);
 
   //allows user to begin editing a family name on double-click
   const handleDoubleClick = () => {
