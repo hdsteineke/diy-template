@@ -11,8 +11,9 @@ export async function getFamilies() {
 export async function addFamily(family) {
   const response = await client
     .from('families')
-    .insert(family);
-    
+    .insert(family)
+    .single();
+
   return response;
 }
 
