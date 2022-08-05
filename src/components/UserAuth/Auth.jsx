@@ -3,34 +3,48 @@ import {
   InputControl,
   FormButton,
 } from '../../components/Forms/FormControls.jsx';
+import { useForm } from '../../state/hooks/formData.js';
+import { useAuth } from '../../state/hooks/userAuth.js';
 
-const signUp = {
-  header: 'Create a new account',
-  button: 'Sign up',
-  prompt: 'Already have an account?',
-  link: '../',
-};
-
-const signIn = {
-  header: 'Sign in to your account',
-  button: 'Sign Up',
-  prompt: 'Need to create an account?',
-  link: 'sign-up',
-};
 
 export default function Auth() {
+  const { signIn, signUp } = useAuth();
+  
+  const signUpInfo = {
+    header: 'Create a new account',
+    button: 'Sign up',
+    prompt: 'Already have an account?',
+    link: '../',
+    onSubmit: signUp,
+  };
+  
+  const signInInfo = {
+    header: 'Sign in to your account',
+    button: 'Sign Up',
+    prompt: 'Need to create an account?',
+    link: 'sign-up',
+    onSubmit: signIn,
+  };
+
   return (
     <Routes>
-      <Route index element={<AuthForm {...signIn} />} />
-      <Route path="sign-up" element={<AuthForm {...signUp} />} />
+      <Route index element={<AuthForm {...signInInfo} />} />
+      <Route path="sign-up" element={<AuthForm {...signUpInfo} />} />
     </Routes>
   );
 }
 
-function AuthForm({ header, button, prompt, link }) {
+function AuthForm({ header, button, prompt, link, onSubmit }) {
+  const [credentials, handleChange] = useForm();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(credentials);
+  };
+
   return (
     <section>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>{header}</h1>
 
         <InputControl
@@ -39,6 +53,8 @@ function AuthForm({ header, button, prompt, link }) {
           type="email"
           required
           placeholder="email"
+          value={credentials.email}
+          onChange={handleChange}
         />
 
         <InputControl
@@ -47,6 +63,8 @@ function AuthForm({ header, button, prompt, link }) {
           type="password"
           required
           placeholder="password"
+          value={credentials.password}
+          onChange={handleChange}
         />
 
         <FormButton>{button}</FormButton>

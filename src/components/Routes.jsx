@@ -12,7 +12,7 @@ export default function Routes() {
   return (
     <RRoutes>
       {/* All Routes nested within UserAuth Route will require authorization */}
-      <Route path="auth/*" element={<UserAuth />} />
+      <Route path="user/*" element={<UserAuth />} />
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="pokedex" element={<Pokedex />} />
@@ -21,7 +21,7 @@ export default function Routes() {
         <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
           <Route index element={<Families />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Route>
     </RRoutes>
   );
