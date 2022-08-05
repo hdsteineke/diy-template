@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import {
   signIn as signInService,
   signUp as signUpService,
+  uploadAvatar,
+  upsertProfile,
 } from '../services/user-service.js';
 import {
   UserStateContext,
@@ -35,4 +37,35 @@ export function useAuth() {
     signIn,
     signUp,
   };
+}
+
+//takes in user's data for setting their profile
+export function useProfile() {
+  const { user, profile } = useContext(UserStateContext);
+  const { setProfile } = useContext(UserActionContext);
+
+  const updateProfile = async ({ avatar, ...profile }) => {
+    const { url, error } = await uploadAvatar(user.id, avatar);
+    if (error) {
+      alert('Error!! Try again :P');
+    }
+    if (url) {
+      alert('Uploaded successfully!');
+      const { data, error } = await upsertProfile({
+        ...profile,
+        avatar: url,
+      });
+
+      if (error) {
+        alert('Error!! Try again :P');
+      }
+      if (data) {
+        alert('saved profile');
+
+        setProfile(data);
+      }
+    }
+  };
+
+  return [profile, updateProfile];
 }

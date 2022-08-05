@@ -16,7 +16,7 @@ export default function UserAuth() {
       {/* hardcoded preview of user data for checking authentication */}
       <div>
         <h2>User</h2>
-        <pre>{JSON.stringify(user, true, 2)}</pre>
+        <pre>{user.id}</pre>
         <h2>Profile</h2>
         <pre>{JSON.stringify(profile, true, 2)}</pre>
       </div>

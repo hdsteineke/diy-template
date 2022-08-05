@@ -46,6 +46,7 @@ export default function Profile() {
           required
           onChange={handlePreview}
         >
+          {/* allows user to see a preview of their avatar image */}
           {preview && <img src={preview} alt="avatar preview" />}
         </InputControl>
 
