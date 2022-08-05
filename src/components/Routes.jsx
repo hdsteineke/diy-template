@@ -11,6 +11,7 @@ import Families from './FuzzyBunny/Families';
 export default function Routes() {
   return (
     <RRoutes>
+      {/* All Routes nested within UserAuth Route will require authorization */}
       <Route path="auth/*" element={<UserAuth />} />
       <Route element={<Layout />}>
         <Route index element={<Home />} />
