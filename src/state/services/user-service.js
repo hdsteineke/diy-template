@@ -4,20 +4,22 @@ export function getUser() {
   return client.auth.user();
 }
 
-export async function signUp(email, password) {
-  return await client.auth.signUp({ email, password });
+export async function signUp(credentials) {
+  return await client.auth.signUp(credentials);
 }
 
-export async function SignIn(email, password) {
-  return await client.auth.signIn({ email, password });
+export async function SignIn(credentials) {
+  return await client.auth.signIn(credentials);
 }
 
 export async function signOut() {
   return await client.auth.signOut();
 }
 
+//user profile stuff
 const PROFILE = 'profile';
-export async function getLocalProfile() {
+
+export function getLocalProfile() {
   const json = localStorage.getItem(PROFILE);
   if (!json) return null;
   try {
@@ -27,7 +29,7 @@ export async function getLocalProfile() {
   }
 }
 
-export async function saveLocalProfile(profile) {
+export function saveLocalProfile(profile) {
   localStorage.setItem(PROFILE, JSON.stringify(profile));
 }
 
@@ -55,6 +57,7 @@ export async function updateProfile(profile) {
 const BUCKET_NAME = 'avatars';
 
 export async function uploadAvatar(userId, imageFile) {
+  //ensuring image files are uploaded with unique names
   const imageName = `${userId}/${imageFile.name}`;
 
   const bucket = client.storage.from(BUCKET_NAME);

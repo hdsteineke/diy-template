@@ -7,23 +7,21 @@ function FormControl({
   children,
   className: customClassName,
 }) {
-  const className = classNames(
-    styles.FormControl,
-    customClassName
-  );
+  const className = classNames(styles.FormControl, customClassName);
 
   return (
     <label className={className}>
-      <Label text={label} />
+      <LabelText text={label} />
       {children}
     </label>
   );
 }
 
-function Label({ text }) {
+function LabelText({ text, as: Tag = 'span' }) {
   if (!text) return null;
 
-  return <span className="label-text">{text}</span>;
+  const className = classNames(styles.Label, 'label-text');
+  return <Tag className={className}>{text}</Tag>;
 }
 
 //allows for easy customization of different option types (options of options!)
@@ -59,6 +57,7 @@ export function CheckboxControl({ label, ...rest }) {
 export function OptionGroupControl({
   label,
   name,
+  onChange,
   children,
 }) {
   return(
@@ -67,7 +66,7 @@ export function OptionGroupControl({
         <Label text={label} as="legend" />
         <div>
           {Children.map(children, (child) =>
-            cloneElement(child, { name })
+            cloneElement(child, { name, onChange })
           )}
         </div>
       </fieldset>
@@ -75,46 +74,69 @@ export function OptionGroupControl({
   );
 }
 
+const verifyValue = (props) => {
+  if (Object.prototype.hasOwnProperty.call(props, 'value'))
+    props.value = props.value ?? '';
+};
+
+
 //?? What is going on here with forwardRef?
-export const InputControl = forwardRef(
-  ({ label, className, value, ...rest }, ref) => {
-    return (
-      <FormControl label={label} className={className}>
-        <input ref={ref} value={value || ''} {...rest} />
-      </FormControl>
-    );
-  }
+export const InputControl = forwardRef((props, ref) => {
+  const { label, className, children, ...rest } = props;
+  verifyValue(rest);
+
+  return (
+    <FormControl label={label} className={className}>
+      <input ref={ref} {...rest} />
+      {children}
+    </FormControl>
+  );
+}
 );
 
 InputControl.displayName = 'InputControl';
 
 
-export function SelectControl({
-  label,
-  children,
-  value,
-  ...rest
-}) {
+export const SelectControl = forwardRef((props, ref) => {
+  const { label, children, ...rest } = props;
+  verifyValue(rest);
+
   return (
     <FormControl label={label}>
-      <select value={value || ''} {...rest}>
+      <select ref={ref} {...rest}>
         {children}
       </select>
     </FormControl>
   );
-}
+});
 
-export function TextAreaControl({ label, ...rest }) {
+SelectControl.displayName = 'SelectControl';
+
+export const TextAreaControl = forwardRef((props, ref) => {
+  const { label, ...rest } = props;
+  verifyValue(rest);
+
   return (
     <FormControl label={label}>
-      <textarea {...rest}></textarea>
+      <textarea ref={ref} {...rest}></textarea>
     </FormControl>
   );
-}
+});
 
-export function FormButton({ children, ...rest }) {
+TextAreaControl.displayName = 'TextAreaControl';
+
+export function FormButton({
+  children,
+  icon = false,
+  className: customClassName,
+  ...rest
+}) {
+  const className = classNames(styles.FormButton, customClassName, {
+    [styles.Icon]: icon,
+  });
+
   return (
-    <button className={styles.FormButton} {...rest}>
+    <button className={className} {...rest}>
       {children}
     </button>
   );
@@ -122,7 +144,7 @@ export function FormButton({ children, ...rest }) {
 
 
 export function FormButtonControl(props) {
-  return <FormButton {...props} />;
+  return <FormButton className={styles.FormControl} {...props} />;
 }
 
 export function Fieldset({ legend, children }) {
