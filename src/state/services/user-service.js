@@ -1,4 +1,4 @@
-import client from './supabase-client.js';
+import client from './client.js';
 
 export function getUser() {
   return client.auth.user();

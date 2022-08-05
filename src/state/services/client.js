@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-export const client =  createClient(
+export default createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
 );

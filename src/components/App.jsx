@@ -5,12 +5,12 @@ import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext.jsx';
 
 export default function App() {
   return (
-    <Router>
-      <UserProvider>
-        <FuzzyBunnyProvider>
+    <UserProvider>
+      <FuzzyBunnyProvider>
+        <Router>
           <Routes />
-        </FuzzyBunnyProvider>
-      </UserProvider>
-    </Router>
+        </Router>
+      </FuzzyBunnyProvider>
+    </UserProvider>
   );
 }
