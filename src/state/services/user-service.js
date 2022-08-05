@@ -8,7 +8,7 @@ export async function signUp(credentials) {
   return await client.auth.signUp(credentials);
 }
 
-export async function SignIn(credentials) {
+export async function signIn(credentials) {
   return await client.auth.signIn(credentials);
 }
 
@@ -43,14 +43,14 @@ export async function getProfile() {
     .single();
 }
 
-export async function updateProfile(profile) {
+export async function upsertProfile(profile) {
   const response = await client
     .from('profiles')
     .upsert(profile)
     .eq('id', profile.id)
     .single();
 
-  saveLocalProfile(response.data);
+  // saveLocalProfile(response.data);
   return response;
 }
 
