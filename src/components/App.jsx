@@ -17,21 +17,23 @@ import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext.jsx';
 export default function App() {
   return (
     <Router>
-      <FuzzyBunnyProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="list" element={<List />} />
-            <Route path="pokedex" element={<Pokedex />} />
-            <Route path="about" element={<About />} />
-            <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
-              <Route index element={<Families />} />
-              <Route path="bunnies" element={<Bunnies />} />
+      <UserProvider>
+        <FuzzyBunnyProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="list" element={<List />} />
+              <Route path="pokedex" element={<Pokedex />} />
+              <Route path="about" element={<About />} />
+              <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
+                <Route index element={<Families />} />
+                <Route path="bunnies" element={<Bunnies />} />
+              </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </FuzzyBunnyProvider>
+          </Routes>
+        </FuzzyBunnyProvider>
+      </UserProvider>
     </Router>
   );
 }
