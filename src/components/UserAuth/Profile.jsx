@@ -7,6 +7,7 @@ export default function Profile() {
   const [updateProfile] = useProfile();
   const [profile, handleChange] = useForm();
   const [preview, setPreview] = useState();
+  const [updating, setUpdating] = useState(false);
 
   const handlePreview = (e) => {
     const target = e.target;
@@ -20,15 +21,17 @@ export default function Profile() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProfile(profile);
+    setUpdating(true);
+    await updateProfile(profile);
+    setUpdating(false);
   };
 
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <h2>Profile</h2>
+        <h2>User Profile</h2>
 
         <InputControl 
           label="User Name"
@@ -47,10 +50,11 @@ export default function Profile() {
           onChange={handlePreview}
         >
           {/* allows user to see a preview of their avatar image */}
-          {preview && <img src={preview} alt="avatar preview" />}
+          <Avatar src={preview} username={profile.username} />
         </InputControl>
 
         <FormButton>Update</FormButton>
+          {updating ? 'Updating...' : 'Update'}
 
       </form>
     </section>
