@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useProfile } from '../../state/hooks/userAuth.js';
 import { useForm } from '../../state/hooks/formData.js';
 import { FormButton, InputControl } from '../Forms/FormControls.jsx';
+import Avatar from './Avatar.jsx';
 
 export default function Profile() {
   const [updateProfile] = useProfile();
@@ -54,7 +55,7 @@ export default function Profile() {
         </InputControl>
 
         <FormButton>Update</FormButton>
-          {updating ? 'Updating...' : 'Update'}
+        {updating ? 'Updating...' : 'Update'}
 
       </form>
     </section>

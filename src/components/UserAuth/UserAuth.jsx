@@ -1,10 +1,13 @@
 import Auth from './Auth.jsx';
 import { useStatus } from '../../state/hooks/userAuth.js';
 import Profile from './Profile.jsx';
+import { Navigate } from 'react-router-dom';
 
 
 export default function UserAuth() {
   const { user, profile } = useStatus();
+
+  if (user && profile) return <Navigate to="/" />;
 
   return (
     <section>
@@ -12,14 +15,6 @@ export default function UserAuth() {
       {/* checks for authorized user: if no, reroute to Auth. 
       if yes, reroute to profile */}
       {user ? <Profile /> : <Auth />}
-
-      {/* hardcoded preview of user data for checking authentication */}
-      <div>
-        <h2>User</h2>
-        <pre>{user.id}</pre>
-        <h2>Profile</h2>
-        <pre>{JSON.stringify(profile, true, 2)}</pre>
-      </div>
     </section>
   );
 }
