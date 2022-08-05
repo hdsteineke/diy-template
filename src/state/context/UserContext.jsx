@@ -12,5 +12,20 @@ export default function UserProvider({ children }) {
     user,
     profile
   };
-  
+
+  const actionValue = useMemo(
+    () => ({
+      setUser,
+      setProfile,
+    }),
+    [setUser, setProfile]
+  );
+
+  return (
+    <UserStateContext.Provider value={stateValue}>
+      <UserActionContext.Provider value={actionValue}>
+        {children}
+      </UserActionContext.Provider>
+    </UserStateContext.Provider>
+  );
 }
