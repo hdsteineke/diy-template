@@ -1,78 +1,150 @@
 import classNames from 'classnames';
 import styles from './FormControls.css';
+import { Children, cloneElement, forwardRef } from 'react';
 
 function FormControl({
   label,
   children,
   className: customClassName,
 }) {
-  const className = classNames(
-    styles.FormControl,
-    customClassName
-  );
+  const className = classNames(styles.FormControl, customClassName);
 
   return (
     <label className={className}>
-      <Label text={label} />
+      <LabelText text={label} />
       {children}
     </label>
   );
 }
 
-function Label({ text }) {
-  return <span className="label-text">{text}</span>;
+function LabelText({ text, as: Tag = 'span' }) {
+  if (!text) return null;
+
+  const className = classNames(styles.Label, 'label-text');
+  return <Tag className={className}>{text}</Tag>;
 }
 
-export function CheckboxControl({ label, text, ...rest }) {
+//allows for easy customization of different option types (options of options!)
+function Option({ text, type, ...rest }) {
+  return (
+    <label>
+      <input type={type} {...rest} />
+      {text}
+    </label>
+  );
+}
+
+
+export function CheckboxOption(props) {
+  return <Option type="checkbox" {...props} />;
+}
+
+export function RadioOption(props) {
+  return <Option type="radio" {...props} />;
+}
+
+
+export function CheckboxControl({ label, ...rest }) {
   return (
     <div className={styles.FormControl}>
-      <Label text={label} />
-      <label className={styles.CheckboxLabel}>
-        <input type="checkbox" {...rest} />
-        {text}
-      </label>
+      <LabelText text={label} />
+      <CheckboxOption {...rest} />
     </div>
   );
 }
 
-export function InputControl({
+//?? maybe a way of keeping formatting consistent across options?
+export function OptionGroupControl({
   label,
-  className,
-  ...rest
+  name,
+  onChange,
+  children,
 }) {
+  return(
+    <div>
+      <fieldset>
+        <LabelText text={label} as="legend" />
+        <div>
+          {Children.map(children, (child) =>
+            cloneElement(child, { name, onChange })
+          )}
+        </div>
+      </fieldset>
+    </div>
+  );
+}
+
+const verifyValue = (props) => {
+  if (Object.prototype.hasOwnProperty.call(props, 'value'))
+    props.value = props.value ?? '';
+};
+
+
+//?? What is going on here with forwardRef?
+export const InputControl = forwardRef((props, ref) => {
+  const { label, className, children, ...rest } = props;
+  verifyValue(rest);
+
   return (
     <FormControl label={label} className={className}>
-      <input {...rest} />
+      <input ref={ref} {...rest} />
+      {children}
     </FormControl>
   );
 }
+);
 
-export function SelectControl({
-  label,
+InputControl.displayName = 'InputControl';
+
+
+export const SelectControl = forwardRef((props, ref) => {
+  const { label, children, ...rest } = props;
+  verifyValue(rest);
+
+  return (
+    <FormControl label={label}>
+      <select ref={ref} {...rest}>
+        {children}
+      </select>
+    </FormControl>
+  );
+});
+
+SelectControl.displayName = 'SelectControl';
+
+export const TextAreaControl = forwardRef((props, ref) => {
+  const { label, ...rest } = props;
+  verifyValue(rest);
+
+  return (
+    <FormControl label={label}>
+      <textarea ref={ref} {...rest}></textarea>
+    </FormControl>
+  );
+});
+
+TextAreaControl.displayName = 'TextAreaControl';
+
+export function FormButton({
   children,
+  icon = false,
+  className: customClassName,
   ...rest
 }) {
-  return (
-    <FormControl label={label}>
-      <select {...rest}>{children}</select>
-    </FormControl>
-  );
-}
+  const className = classNames(styles.FormButton, customClassName, {
+    [styles.Icon]: icon,
+  });
 
-export function TextAreaControl({ label, ...rest }) {
   return (
-    <FormControl label={label}>
-      <textarea {...rest}></textarea>
-    </FormControl>
-  );
-}
-
-export function FormButton({ children }) {
-  return (
-    <button className={styles.FormButton}>
+    <button className={className} {...rest}>
       {children}
     </button>
   );
+}
+
+
+export function FormButtonControl(props) {
+  return <FormButton className={styles.FormControl} {...props} />;
 }
 
 export function Fieldset({ legend, children }) {
