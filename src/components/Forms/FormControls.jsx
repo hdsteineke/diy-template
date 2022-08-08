@@ -47,7 +47,7 @@ export function RadioOption(props) {
 export function CheckboxControl({ label, ...rest }) {
   return (
     <div className={styles.FormControl}>
-      <Label text={label} />
+      <LabelText text={label} />
       <CheckboxOption {...rest} />
     </div>
   );
@@ -63,7 +63,7 @@ export function OptionGroupControl({
   return(
     <div>
       <fieldset>
-        <Label text={label} as="legend" />
+        <LabelText text={label} as="legend" />
         <div>
           {Children.map(children, (child) =>
             cloneElement(child, { name, onChange })

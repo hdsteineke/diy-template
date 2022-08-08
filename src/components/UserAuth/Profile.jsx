@@ -5,7 +5,7 @@ import { FormButton, InputControl } from '../Forms/FormControls.jsx';
 import Avatar from './Avatar.jsx';
 
 export default function Profile() {
-  const [updateProfile] = useProfile();
+  const [, updateProfile] = useProfile();
   const [profile, handleChange] = useForm();
   const [preview, setPreview] = useState();
   const [updating, setUpdating] = useState(false);
@@ -32,7 +32,6 @@ export default function Profile() {
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <h2>User Profile</h2>
 
         <InputControl 
           label="User Name"
@@ -54,7 +53,7 @@ export default function Profile() {
           <Avatar src={preview} username={profile.username} />
         </InputControl>
 
-        <FormButton>Update</FormButton>
+        <FormButton>Submit</FormButton>
         {updating ? 'Updating...' : 'Update'}
 
       </form>

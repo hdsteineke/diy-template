@@ -52,7 +52,8 @@ export function useProfile() {
     if (url) {
       alert('Uploaded successfully!');
       const { data, error } = await upsertProfile({
-        ...profile,
+        // ...profile,
+        username: profile.username,
         avatar: url,
       });
 

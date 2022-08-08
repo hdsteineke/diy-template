@@ -11,7 +11,6 @@ export default function UserAuth() {
 
   return (
     <section>
-      User Auth section
       {/* checks for authorized user: if no, reroute to Auth. 
       if yes, reroute to profile */}
       {user ? <Profile /> : <Auth />}
