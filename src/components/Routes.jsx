@@ -17,7 +17,6 @@ export default function Routes() {
       <Route element={<Layout />}>
         <Route element={<ProtectedRoutes />}>
           <Route index element={<Home />} />
-          <Route path="pokedex" element={<Pokedex />} />
           <Route path="list" element={<List />} />
           <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
             <Route index element={<Families />} />
@@ -25,6 +24,7 @@ export default function Routes() {
         </Route>
 
         <Route path="about" element={<About />} />
+        <Route path="pokedex" element={<Pokedex />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
