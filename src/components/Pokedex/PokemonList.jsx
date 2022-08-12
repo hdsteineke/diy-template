@@ -21,7 +21,7 @@ export default function PokemonList() {
     <ul className={styles.PokemonList}>
       {pokedex.map((pokemon, i) => (
         <Card
-          key={pokemon._i}
+          key={pokemon + i}
           pokemon={pokemon}
           //is this where some of the auto-load is happening?
           loadRef={i === pokedex.length - 3 ? ref : null}

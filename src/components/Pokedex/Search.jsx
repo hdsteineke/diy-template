@@ -10,6 +10,7 @@ import {
 export default function Search() {
   const { abilities } = useAbilities();
   const [search, setSearch] = useSearch();
+  console.log('abilities', abilities);
 
   return (
     <Form
@@ -19,9 +20,9 @@ export default function Search() {
       <InputControl label="pokemon" name="pokemon" />
 
       <SelectControl label="ability" name="ability">
-        <option value={''}>all abilities</option>
+        <option value={'1'}>Search abilities</option>
         {abilities.map(({ ability, count }) => (
-          <AbilityOption key={ability} type={ability} count={count} />
+          <AbilityOption ability={ability} key={ability} type={ability} count={count} />
         ))}
       </SelectControl>
       <FormButton>Search</FormButton>
