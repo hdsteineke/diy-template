@@ -22,6 +22,7 @@ export default function Search() {
       <SelectControl label="ability" name="ability">
         <option value={'1'}>Search abilities</option>
         {abilities.map(({ ability, count }) => (
+          //  eslint-disable-next-line
           <AbilityOption ability={ability} key={ability} type={ability} count={count} />
         ))}
       </SelectControl>
