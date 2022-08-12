@@ -1,14 +1,19 @@
 const API_URL = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 const ABILITIES_URL = `${API_URL}/abilities`;
 
-export async function getPokedex(searchParams, page) {
+export async function getPokedex(search, pagingOptions = {}) {
+  const params = new URLSearchParams(search);
+  const { page, perPage } = pagingOptions;
+  if (page) params.set('page', page);
+  if (perPage) params.set('perPage', perPage);
+
   return await get(
-    `${API_URL}?${searchParams.toString()}&page=${page}`
+    `${API_URL}?${params.toString()}`
   );
 }
 
 export async function getAbilities() {
-  return await get(`${ABILITIES_URL}`);
+  return await get(ABILITIES_URL);
   
 }
 
