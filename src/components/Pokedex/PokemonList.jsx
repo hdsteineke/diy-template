@@ -1,4 +1,4 @@
-import { useInView } from 'react-itersection-observer';
+import { useInView } from 'react-intersection-observer';
 import { useSearch } from '../../state/hooks/url.js';
 import { usePokedex } from '../../state/hooks/pokedex.js';
 import styles from './PokemonList.css';
